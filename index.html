@@ -32,10 +32,14 @@
       </div>
     </div>
     <div class="container my-4">
-      <h1>Transactions By User</h1>
+      <h1>Transactions</h1>
+      <h4>User Id :- <span style="font-size: 2rem" id="userId"></span></h4>
+      <h4>
+        Transaction Id :- <span style="font-size: 2rem" id="recId"></span>
+      </h4>
       <!-- table for showing data -->
       <div style="width: 18rem">
-        <span id="transactionTable"></span>
+        <span id="transactionBlock"></span>
       </div>
     </div>
 
@@ -63,39 +67,14 @@
       function hideloader() {
         document.getElementById("loading").style.display = "none";
       }
-      // Function to define innerHTML for HTML table
-      //   function show(data) {
-      //     let tab = `<tr>
-      //       <th>ID</th>
-      //       <th>Customer vPay Id</th>
-      //       <th>Customer vPay</th>
-      //       <th>partner vPay Id</th>
-      //       <th>Customer vPay Id</th>
-      //       <th>Amount</th>
-      //      </tr>`;
-
-      //     // Loop to access all rows
-      //     for (let r of data.transactions) {
-      //       tab += `
-
-      //       <tr>
-      // <td>${r.id} </td>
-      // <td>${r.customer.vPayId}</td>
-      // <td>${r.customer.vPay}</td>
-      // <td>${r.partner.vPayId}</td>
-      // <td>${r.partner.vPay}</td>
-      // <td>${r.amount}</td>
-      // <td>${r.startDate}</td>
-      // <td>${r.endDate}</td>
-
-      // </tr>`;
-      //     }
-      //     // Setting innerHTML as tab variable
-      //     document.getElementById("transactionTable").innerHTML = tab;
-      //   }
 
       function show(data) {
         let tab;
+
+        console.log(data.userId);
+
+        let user_id = data.userId;
+        let rec_id = data.receipeintId;
 
         // Loop to access all rows
         for (let r of data.transactions) {
@@ -108,12 +87,14 @@
             <p>${r.id}<p>
         </div>
         </div>
-        <small class="mx-4">${new Date(r.endDate)}</small>
+        <small class="mx-4">${new Date(r.endDate).toLocaleString()}</small>
         </br>
           `;
         }
         // Setting innerHTML as tab variable
-        document.getElementById("transactionTable").innerHTML = tab;
+        document.getElementById("transactionBlock").innerHTML = tab;
+        document.getElementById("userId").innerHTML = user_id;
+        document.getElementById("recId").innerHTML = rec_id;
       }
     </script>
 
