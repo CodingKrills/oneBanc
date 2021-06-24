@@ -32,6 +32,15 @@
       .border_me {
         border: 1px solid black;
       }
+      .card {
+        width: 18rem;
+      }
+      .mkl {
+        padding-left: 66%;
+      }
+      .mkr {
+        padding-right: 5%;
+      }
     </style>
 
     <div class="d-flex justify-content-center">
@@ -63,7 +72,7 @@
         class="scrollspy-example shadow border_me"
         tabindex="0"
       >
-        <div class="mx-auto" style="width: 18rem">
+        <div>
           <span id="transactionBlock"></span>
         </div>
       </div>
@@ -104,8 +113,10 @@
 
         // Loop to access all rows
         for (let r of data.transactions) {
-          tab += `
-          <div class="card shadow m-2 border-secondary">
+          if (r.direction === 1) {
+            tab += `
+            <div class="mkl">
+          <div class="card shadow m-2 border-secondary ">
         <div class="card-body">
             <h1>${r.amount}</h1>
             <button type="button" class="btn btn-outline-dark">Cancel</button>
@@ -113,9 +124,26 @@
             <p>${r.id}<p>
         </div>
         </div>
-        <small class="mx-4">${new Date(r.endDate).toLocaleString()}</small>
+        <small class="mx-4">${new Date(r.endDate).toLocaleString()}
         </br>
+        </div>
           `;
+          } else {
+            tab += `
+            <div class="mkr">
+          <div class="card shadow m-2 border-secondary ">
+            <div class="card-body">
+            <h1>${r.amount}</h1>
+            <button type="button" class="btn btn-outline-dark">Cancel</button>
+            <p>Transaction Id<p>
+            <p>${r.id}<p>
+        </div>
+        </div>
+        <small class="mx-4">${new Date(r.endDate).toLocaleString()}
+        </br>
+        </div>
+          `;
+          }
         }
         // Setting innerHTML as tab variable
         document.getElementById("transactionBlock").innerHTML = tab;
