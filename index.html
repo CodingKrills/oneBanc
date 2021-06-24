@@ -58,9 +58,13 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <h1>Transactions By User</h1>
-    <!-- table for showing data -->
-    <table id="transactionTable"></table>
+    <div class="container my-4">
+      <h1>Transactions By User</h1>
+      <!-- table for showing data -->
+      <div style="width: 18rem">
+        <span id="transactionTable"></span>
+      </div>
+    </div>
 
     <script>
       // api url
@@ -87,28 +91,49 @@
         document.getElementById("loading").style.display = "none";
       }
       // Function to define innerHTML for HTML table
+      //   function show(data) {
+      //     let tab = `<tr>
+      //       <th>ID</th>
+      //       <th>Customer vPay Id</th>
+      //       <th>Customer vPay</th>
+      //       <th>partner vPay Id</th>
+      //       <th>Customer vPay Id</th>
+      //       <th>Amount</th>
+      //      </tr>`;
+
+      //     // Loop to access all rows
+      //     for (let r of data.transactions) {
+      //       tab += `
+
+      //       <tr>
+      // <td>${r.id} </td>
+      // <td>${r.customer.vPayId}</td>
+      // <td>${r.customer.vPay}</td>
+      // <td>${r.partner.vPayId}</td>
+      // <td>${r.partner.vPay}</td>
+      // <td>${r.amount}</td>
+      // <td>${r.startDate}</td>
+      // <td>${r.endDate}</td>
+
+      // </tr>`;
+      //     }
+      //     // Setting innerHTML as tab variable
+      //     document.getElementById("transactionTable").innerHTML = tab;
+      //   }
+
       function show(data) {
-        let tab = `<tr>
-          <th>ID</th>
-          <th>Customer vPay Id</th>
-          <th>Customer vPay</th>
-          <th>partner vPay Id</th>
-          <th>Customer vPay Id</th>
-          <th>Amount</th>
-         </tr>`;
+        let tab;
 
         // Loop to access all rows
         for (let r of data.transactions) {
-          tab += `<tr> 
-    <td>${r.id} </td>
-    <td>${r.customer.vPayId}</td>
-    <td>${r.customer.vPay}</td>
-    <td>${r.partner.vPayId}</td>
-    <td>${r.partner.vPay}</td>
-    <td>${r.amount}</td>          
-    <td>${r.startDate}</td>
-    <td>${r.endDate}</td> 
-    </tr>`;
+          tab += `
+          <div class="card">
+        <div class="card-body">
+            <h1>${r.amount}</h1>
+            <button type="button" class="btn btn-outline-dark">cancle</button>
+        </div>
+        </div>
+          `;
         }
         // Setting innerHTML as tab variable
         document.getElementById("transactionTable").innerHTML = tab;
