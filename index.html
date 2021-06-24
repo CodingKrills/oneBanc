@@ -100,7 +100,7 @@
         // Loop to access all rows
         for (let r of data.transactions) {
           tab += `
-          <div class="card shadow m-2">
+          <div class="card shadow m-2 border-secondary">
         <div class="card-body">
             <h1>${r.amount}</h1>
             <button type="button" class="btn btn-outline-dark">Cancel</button>
@@ -108,6 +108,8 @@
             <p>${r.id}<p>
         </div>
         </div>
+        <small class="mx-4">${new Date(r.endDate)}</small>
+        </br>
           `;
         }
         // Setting innerHTML as tab variable
